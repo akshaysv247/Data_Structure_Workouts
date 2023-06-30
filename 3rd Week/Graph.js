@@ -55,6 +55,42 @@ class Graph {
         }
         delete this.adjacencyList[vertex]
     }
+    bfs(startVertex) {
+        const queue = [startVertex];
+        const visited = {};
+    
+        visited[startVertex] = true;
+    
+        while (queue.length) {
+          const currentVertex = queue.shift();
+          console.log(currentVertex);
+    
+          this.adjacencyList[currentVertex].forEach((neighbor) => {
+            if (!visited[neighbor]) {
+              visited[neighbor] = true;
+              queue.push(neighbor);
+            }
+          });
+        }
+      }
+    
+      dfs(startVertex) {
+        const visited = {};
+    
+        const dfsHelper = (vertex) => {
+          visited[vertex] = true;
+          console.log(vertex);
+    
+          this.adjacencyList[vertex].forEach((neighbor) => {
+            if (!visited[neighbor]) {
+              dfsHelper(neighbor);
+            }
+          });
+        };
+    
+        dfsHelper(startVertex);
+      }
+    
 
     display() {
         for (let vertex in this.adjacencyList) {

@@ -35,6 +35,7 @@ const hash = new HashTable(50);
 hash.set('name', 'Akshay');
 hash.set('age', 22)
 hash.set('sex', 'male');
+hash.set('mane', 'nelson');
 hash.display();
 // console.log(hash.get('name'));
 // hash.remove('sex');

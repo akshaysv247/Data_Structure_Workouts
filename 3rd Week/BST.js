@@ -36,6 +36,8 @@ class BinarySearchTree {
             this.insertNode(this.root, node);
         }
     }
+
+
     search(root, value) {
         if (!root) {
             return false;
@@ -144,21 +146,21 @@ class BinarySearchTree {
         return false;
       }
   
-      if (prev !== null && node.val <= prev) {
+      if (prev !== null && node.value <= prev) {
         return false;
       }
   
-      prev = node.val;
+      prev = node.value;
   
       return inorderTraversal(node.right);
     }
   
     return inorderTraversal(root);
   }
+  
 }
 
 const bst = new BinarySearchTree();
-// console.log(bst.isEmpty());
 bst.insert(10);
 bst.insert(15);
 bst.insert(5);
@@ -176,10 +178,37 @@ bst.insert(3);
 // bst.preOrder(bst.root);
 // bst.inOrder(bst.root);
 // bst.postOrder(bst.root);
+// bst.delete(5);
 bst.levelOrder();
 // console.log(bst.min(bst.root))
 // console.log(bst.max(bst.root))
-console.log('after delete')
-bst.delete(10);
-bst.levelOrder();
+// console.log('after delete')
 console.log(bst.isValidBST(bst.root))
+
+//function to get the height of a node;
+ function getHeight(node) {
+        if (node === null) {
+          return 0;
+        }
+        
+        const leftHeight = getHeight(node.left);
+        const rightHeight = getHeight(node.right);
+        
+        return Math.max(leftHeight, rightHeight) + 1;
+      }
+console.log(getHeight(bst.root))
+
+// function for checking the tree is balanced
+function isBalanced(root) {
+    if (root === null) {
+        return true;
+    }
+    const leftHeight = getHeight(root.left);
+    const rightHeight = getHeight(root.right);
+    if (Math.abs(leftHeight - rightHeight) > 1) {
+        return false;
+    }
+    return isBalanced(root.left) && isBalanced(root.right)
+}
+
+console.log(isBalanced(bst.root))

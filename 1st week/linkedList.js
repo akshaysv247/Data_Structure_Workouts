@@ -41,8 +41,7 @@ class LinkedList {
         }
         this.size ++;
     }
-    arrayToList() {
-        let a = [1,2,3,2,1];
+    arrayToList(a) {
         for (let i = 0; i < a.length; i++) {
             this.append(a[i]);
         }
@@ -53,7 +52,7 @@ class LinkedList {
         } else {
             let a = [];
             let current = this.head;
-            while (current.next != null) {
+            while (current.next) {
                 a.push(current.value);
                 current = current.next;
             }
@@ -63,7 +62,7 @@ class LinkedList {
     reverse() {
         let curr = this.head;
         let prev = null;
-        while (curr.next != null) {
+        while (curr) {
             let nextcurr = curr.next;
             curr.next = prev;
             prev = curr;
@@ -81,13 +80,21 @@ class LinkedList {
             return value;
         }
     }
-    // removeFronEnd() {
-    //     if (this.isEmpty()) {
-    //         return null;
-    //     } else {
-            
-    //     }
-    // }
+    sort() {
+        let cur = this.head;
+        while (cur) {
+            let nex = cur.next;
+            while (nex) {
+                if (cur.value > nex.value) {
+                    let temp = cur.value;
+                    cur.value = nex.value;
+                    nex.value = temp;
+                }
+                nex = nex.next;
+            }
+            cur = cur.next;
+        }
+    }
     removeDuplicates() {
         if (this.isEmpty()){
             return null;
@@ -95,7 +102,7 @@ class LinkedList {
             const set = new Set();
             let curr = this.head;
             let prev = null;
-            while (curr != null) {
+            while (curr) {
                 if (set.has(curr.value)) {
                     prev.next = curr.next;
                 } else {
@@ -149,20 +156,32 @@ class LinkedList {
             }
         }
     }
+    printRiversly(node){
+        if (this.isEmpty()) {
+            return ;
+        }
+        if (node) {
+            this.printRiversly(node.next);
+            console.log(node.value);
+        }
+    }
 }
 
 const list = new LinkedList();
-
+const b = [20,10,50,40,30]
 // console.log(list.isEmpty())
 // console.log(list.getSize());
 // list.prepend(1);
 // list.prepend(2)
-list.arrayToList()
+list.arrayToList(b)
 // list.reverse();
 // list.removeFromFront();
 // list.removeDuplicates();
 // console.log(list.sum());
-list.printList();
-console.log(list.deleteMid())
+// console.log(list.deleteMid())
 // console.log(list)
 // console.log(list.listToArray());
+list.printRiversly(list.head)
+console.log('##############')
+// list.sort();
+list.printList();

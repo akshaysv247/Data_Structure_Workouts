@@ -79,6 +79,15 @@ class MaxHeap {
         currentIndex = maxChildIndex;
       }
     }
+     findSmallestInMaxHeap() {
+      let smallest = this.heap[0]; 
+      for (let i = 1; i < this.heap.length; i++) {
+        if (this.heap[i] < smallest) {
+          smallest = this.heap[i];
+        }
+      }
+      return smallest;
+    }
   }
   const heap = new MaxHeap();
 
@@ -88,5 +97,8 @@ class MaxHeap {
   heap.insert(10);
   heap.insert(15)
   heap.insert(20)
+  heap.deleteMax();
   heap.heapifyDown()
+
   console.log(heap)
+  console.log(heap.findSmallestInMaxHeap())
