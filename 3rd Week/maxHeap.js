@@ -97,6 +97,7 @@ class MaxHeap {
   heap.insert(10);
   heap.insert(15)
   heap.insert(20)
+  heap.heapifyUp();
   heap.deleteMax();
   heap.heapifyDown()
 
