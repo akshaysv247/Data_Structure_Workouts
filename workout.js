@@ -47,3 +47,44 @@ const play = () => {
 }
 
 cron.schedule('* * * * *', play); // run on every minute
+
+const ogObj = {name: 'nelson', age: '22', hobies:[1,2,3]}
+
+const deepCopy = JSON.parse(JSON.stringify(ogObj))
+const shallowCopy = ogObj
+shallowCopy.name = 'kili'
+deepCopy.name = 'anwar'
+console.log(deepCopy)
+console.log(shallowCopy)
+console.log(ogObj)
+
+
+//example for memoisation
+const memoSet = new Set();
+
+function isPrime(n) {
+  if (memoSet.has(n)) {
+    return true;
+  }
+
+  if (n <= 1) {
+    return false;
+  }
+
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+
+  memoSet.add(n);
+  return true;
+}
+
+console.log(isPrime(5)); // Output: true
+console.log(isPrime(7)); // Output: true
+console.log(isPrime(10)); // Output: false
+console.log(isPrime(11)); // Output: true
+
+console.log(memoSet); // Output: Set { 5, 7, 11 }
+
